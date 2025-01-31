@@ -7,7 +7,7 @@ public class VectorSample : MonoBehaviour
     Vector3 vec = new Vector3();
     float x, y, z;
 
-    Vector3 custom_vec = new Vector3(x, y, z);
+    Vector3 custom_vec = new Vector3();
 
     // 유니티 기본 벡터(제공 값)
     // ex) Vector3 a = Vector3.up; (0,1,0);
@@ -66,12 +66,13 @@ public class VectorSample : MonoBehaviour
         // 외적: 3D 에서 사용 (3D 그래픽)
         // 법선 벡터 계산 시에 사용됨.(법선은 평면이나 직선에 대하여 수직인 것을 의미)
         Vector3 cross = Vector3.Cross(k, l);
-        // k * l = (ky * lz - kz * ly, kz * lx * kx * lz, kx * ky = ky * kx)
+        // k * l = (ky * lz - kz * ly, kz * lx * kx * lz, kx * ky - ky * kx)
         // -3, 6, -3
 
         // 벡터의 크기(벡터의 길이)
         Vector3 m = new Vector3(1, 2, 3);
         float mag = m.magnitude;
         // 벡터의 각 성분의 제곱 합의 제곱근
+        
     }
 }
