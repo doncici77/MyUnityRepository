@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ObjectGenerator : MonoBehaviour
@@ -7,7 +8,32 @@ public class ObjectGenerator : MonoBehaviour
     // 3. 물체를 방향에 맞춰 발사하는 기능을 호출해보겠습니다.
 
     public GameObject prefab; // 오브젝트 프리팹 등록
+    GameObject scoreText; // 점수 표시표
     public float power = 1000f; // 발사할 힘의 세기
+    public int score = 0; // 점수
+
+    void Start()
+    {
+        scoreText = GameObject.Find("score"); // 점수 표시표 탐색
+    }
+
+    /// <summary>
+    /// 점수 획득
+    /// </summary>
+    /// <param name="value">수치</param>
+    public void ScorePlus(int value)
+    {
+        score += value;
+        SetScoreText();
+    }
+
+    /// <summary>
+    /// 현 점수에 대한 출력
+    /// </summary>
+    void SetScoreText()
+    {
+        scoreText.GetComponent<TextMeshProUGUI>().text = $"점수 : {score}"; // 점수 표시
+    }
 
     void Update()
     {
