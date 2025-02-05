@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -9,12 +10,26 @@ public class ObjectGenerator : MonoBehaviour
 
     public GameObject prefab; // 오브젝트 프리팹 등록
     GameObject scoreText; // 점수 표시표
+    GameObject time; // 시간 표시표
     public float power = 1000f; // 발사할 힘의 세기
     public int score = 0; // 점수
 
     void Start()
     {
         scoreText = GameObject.Find("score"); // 점수 표시표 탐색
+        time = GameObject.Find("time"); // 시간 표시표 탐색
+
+        StartCoroutine("TimeCheck"); // 시간 체크 코루틴 시작
+    }
+
+
+    IEnumerator TimeCheck()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1); // 1초마다
+            time.GetComponent<TextMeshProUGUI>().text = $"생존시간 : {(int)Time.time}"; // 시간 표시
+        }
     }
 
     /// <summary>

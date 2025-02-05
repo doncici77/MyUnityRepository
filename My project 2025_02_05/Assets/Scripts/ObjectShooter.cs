@@ -38,12 +38,9 @@ public class ObjectShooter : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true; // 충돌시 물체를 고정
         Debug.Log("맞았습니다");
         GetComponentInChildren<ParticleSystem>().Play(); // 파티클 재생
+        Destroy(gameObject, 0.3f); // 1초 뒤에 오브젝트 삭제
 
-        if(collision.gameObject.tag == "terrain") // 충돌한 오브젝트의 태그가 terrain이면
-        {
-            Destroy(gameObject, 1.0f); // 1초 뒤에 오브젝트 삭제
-        }
-        else // 과녁인 경우
+        if (collision.gameObject.tag == "Enemy") // 충돌한 오브젝트의 태그가 "Enemy"일때
         {
             objectGenerator.GetComponent<ObjectGenerator>().ScorePlus(10); // 점수 획득
         }
