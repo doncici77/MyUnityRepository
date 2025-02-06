@@ -9,6 +9,7 @@ public class SampleData
     public Vector3 v;
     public string s;
     public int[] iArray;
+    public Color color;
 }
 
 public class JsonExample : MonoBehaviour
