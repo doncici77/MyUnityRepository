@@ -45,9 +45,4 @@ public class ClassSample : MonoBehaviour
         // static이 붙은 변수나 함수는 객체를 생성하지 않고 클래스에서 바로 그 기능을 가져와 사용함.
 
     }
-
-    void Update()
-    {
-        
-    }
 }
