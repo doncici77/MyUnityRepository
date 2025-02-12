@@ -1,46 +1,65 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 class BoomEvent
 {
-    int hp = 10;
+    public delegate void BoomEventHandler(string message);
+    public event BoomEventHandler boomhandler;
 
-    public event EventHandler boomhandler;
+    public int hp = 5;
 
-    public void Boom()
+    public void BoomText()
     {
-        if(hp > 0)
+        if(hp > 1)
         {
             hp--;
             Debug.Log($"³²Àº hp: {hp}");
+            boomhandler($"³²Àº hp: {hp}");
         }
         else
         {
             Debug.Log("ºÕ!!!!!!!!!");
-            hp = 10;
-            boomhandler(this, EventArgs.Empty);
+            boomhandler("ºÕ!!!!!!!!!");
+            hp = 5;
         }
     }
 }
 
 public class EventManagerSample : MonoBehaviour
 {
+    public GameObject enemy;
+    public Text messageUI;
     BoomEvent boom = new BoomEvent();
 
     void Start()
     {
-        boom.boomhandler += new EventHandler(BoomEffect);
+        boom.boomhandler += BoomEffect;
     }
 
-    private void BoomEffect(object sender, EventArgs e)
+    private void BoomEffect(string message)
     {
-
+        messageUI.text = message;
     }
 
     void Update()
     {
         
+    }
+
+    public void OnBoomtButtonEnter()
+    {
+        if(boom.hp == 1)
+        {
+            Boom();
+        }
+        boom.BoomText();
+    }
+
+    public void Boom()
+    {
+        enemy.GetComponentInChildren<ParticleSystem>().Play();
+        Destroy(enemy, 1f);
     }
 
 }
