@@ -3,7 +3,7 @@ using UnityEngine;
 public interface Enemy
 {
     void Action();
-}
+}  
 
 // 인터페이스나 추상 클래스(abstract class) 사용 목적 1. 비슷한 형태의 데이터 양산이 매우 쉽게 진행된다.
 
