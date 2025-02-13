@@ -23,3 +23,7 @@
 # 6
 
 ![2025-02-12211840-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d1960c38-c155-4bb9-8560-092ff673e0dd)
+
+# 7
+![Myproject2025_02_13-TestGameScene-WindowsMacLinux-Unity66000 0 34f1_DX11_2025-02-1314-57-07-Trim-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/5a922f5e-9e10-40b2-a7e5-a4c2d5f16921)
+![Myproject2025_02_13-QuestScene-WindowsMacLinux-Unity66000 0 34f1__DX11_2025-02-1317-11-31-Trim-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/bf7458f2-df1e-44b6-9931-67c4500156da)
