@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Requirement
   m_EditorClassIdentifier: Assembly-CSharp::Requirement
-  "\uBAA9\uD45C\uBAAC\uC2A4\uD130\uC218": 20
-  "\uD604\uC81C\uC7A1\uC740\uBAAC\uC2A4\uD130\uC218": 0
+  "\uBAA9\uD45C\uBAAC\uC2A4\uD130\uC218": 10
+  "\uD604\uC81C\uC7A1\uC740\uBAAC\uC2A4\uD130\uC218": 21
