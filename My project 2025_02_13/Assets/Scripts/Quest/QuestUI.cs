@@ -10,10 +10,10 @@ public class QuestUI : MonoBehaviour
     public Quest Quest;
     public Reward Reward;
     public Requirement Requirement;
-    
+
     public GameObject talkButton; // 대화 버튼
-    public GameObject acceptButon; // 수락 버튼
-    public GameObject cancelButon; // 거절 버튼
+    public GameObject acceptButton; // 수락 버튼
+    public GameObject cancelButton; // 거절 버튼
     public GameObject killMonButton; // 몬스터 킬 버튼
     public GameObject successButton; // 성공 버튼
     public GameObject rewardButton; // 보상 버튼
@@ -22,101 +22,89 @@ public class QuestUI : MonoBehaviour
 
     private void Start()
     {
-        talkText.text = " 나 좀 도와주지 않겠나?";
+        talkText.text = "나 좀 도와주지 않겠나?";
         talkButton.SetActive(true);
-        TextState(Quest.성공, Quest.진행상태, Quest.퀘스트유형);
+        UpdateStateText();
     }
 
-    public void OnClickAcceptQuest() // 수락 버튼 눌렀을때
+    public void OnClickAcceptQuest() // 수락 버튼
     {
-        Debug.Log("퀘스트 수락");
-        OffButton(); // 퀘스트 버튼 비활성화
+        DisableButtons();
         Quest.진행상태 = true;
-        Talk(Quest.내용.ToString());
-        killMonButton.SetActive(true); // 킬몬스터 버튼 출력
-        TextState(Quest.성공, Quest.진행상태, Quest.퀘스트유형);
+        Talk(Quest.내용);
+        killMonButton.SetActive(true);
         questText.SetActive(true);
     }
 
-    public void OnClickCancelQuest() // 거절 버튼 눌렀을때
+    public void OnClickCancelQuest() // 거절 버튼
     {
         cancelCount++;
-        StartCoroutine("CancelQuest");
+        StartCoroutine(CancelQuest());
     }
 
-    IEnumerator CancelQuest() // 거절 버튼 로직
+    IEnumerator CancelQuest() // 거절 로직
     {
-        Debug.Log("퀘스트 거절");
         Talk("서운하구만...");
-        OffButton(); // 퀘스트 버튼 비활성화
+        DisableButtons();
         yield return new WaitForSeconds(2f);
-        Talk(" 나 좀 도와주지 않겠나? " + cancelCount.ToString() + "트");
+        Talk($"나 좀 도와주지 않겠나? {cancelCount}트");
         talkButton.SetActive(true);
-
     }
 
-    public void OnClickTalk() // 대화 진행 버튼 눌렀을때
+    public void OnClickTalk() // 대화 버튼
     {
-        Debug.Log("대화 진행");
-        Talk(Quest.설명.ToString());
-        OnButton(); // 퀘스트 버튼 활성화
+        Talk(Quest.설명);
+        EnableButtons();
         talkButton.SetActive(false);
     }
 
-    public void OnClickReward() // 보상받기 버튼 눌렀을때
+    public void OnClickReward() // 보상 버튼
     {
-        Talk("보상 경험치: " + Reward.경험치.ToString() + "\n" + 
-            "보상 골드: " + Reward.돈.ToString());
+        Talk($"보상 경험치: {Reward.경험치}\n보상 골드: {Reward.돈}");
         rewardButton.SetActive(false);
     }
 
-    public void OnClickSuccess() // 성공 버튼 눌렀을때
+    public void OnClickSuccess() // 성공 버튼
     {
-        Talk(" 퀘스트를 완료하셨습니다! ");
+        Talk("퀘스트를 완료하셨습니다!");
         successButton.SetActive(false);
         killMonButton.SetActive(false);
         rewardButton.SetActive(true);
         Quest.성공 = true;
         Quest.진행상태 = false;
-        TextState(Quest.성공, Quest.진행상태 , Quest.퀘스트유형);
+        UpdateStateText();
         questNameText.text = Quest.제목;
     }
 
-    public void OnClickKillMonster() // 몬스터 킬 버튼 눌렀을 때
+    public void OnClickKillMonster() // 몬스터 킬 버튼
     {
         Requirement.현제잡은몬스터수++;
-        Debug.Log($"{Requirement.현제잡은몬스터수} 마리");
-        Talk("목표: " + Requirement.목표몬스터수.ToString() + " 마리" + "\n" +
-            "현제: " + Requirement.현제잡은몬스터수.ToString() + " 마리");
-        if(Requirement.현제잡은몬스터수 >= Requirement.목표몬스터수)
+        Talk($"목표: {Requirement.목표몬스터수} 마리\n현재: {Requirement.현제잡은몬스터수} 마리");
+        if (Requirement.현제잡은몬스터수 >= Requirement.목표몬스터수)
         {
             successButton.SetActive(true);
         }
     }
 
-    void OnButton() // 퀘스트 수락 버튼 활성화
+    void EnableButtons() // 버튼 활성화
     {
-        cancelButon.SetActive(true);
-        acceptButon.SetActive(true);
+        cancelButton.SetActive(true);
+        acceptButton.SetActive(true);
     }
 
-    void OffButton() // 퀘스트 수락 버튼 비활성화
+    void DisableButtons() // 버튼 비활성화
     {
-        cancelButon.SetActive(false);
-        acceptButon.SetActive(false);
+        cancelButton.SetActive(false);
+        acceptButton.SetActive(false);
     }
 
-    public void TextState(bool success, bool state , QuestType questType)
+    void UpdateStateText() // 상태 텍스트 업데이트
     {
-        stateText.text = "성공여부: " + success.ToString() + "\n"
-            + "진행중: " + state.ToString() + "\n" 
-            + "퀘스트 유형: " + questType;
+        stateText.text = $"성공여부: {Quest.성공}\n진행중: {Quest.진행상태}\n퀘스트 유형: {Quest.퀘스트유형}";
     }
 
-    public void Talk(string text) // 텍스트 출력
+    void Talk(string text) // 대화 텍스트 출력
     {
-        talkText.text = text; // 대화 텍스트 출력
+        talkText.text = text;
     }
-
-
 }
