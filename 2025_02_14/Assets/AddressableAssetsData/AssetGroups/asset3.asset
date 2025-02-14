@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: asset3
   m_GUID: 97b8378f475e68b408e738aa1f9ce489
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 531dd8c4f451688449dc43d797556085
+    m_Address: Assets/Prefabs/Red_Sphere.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f7c539055f949dd439bfe2a2d317463c, type: 2}
   m_SchemaSet:
