@@ -55,10 +55,9 @@ public class SceneSample : MonoBehaviour
             // 일반적인 씬의 로딩 작업은 동기적으로 처리됨.
             // 씬이 로딩이 다될 때까지 다른 요소들은 작동하지 않게 됨.
         }
-
-        IEnumerator LoadSceneC()
-        {
-            yield return SceneManager.LoadSceneAsync("BRP Sample Scene", LoadSceneMode.Additive);
-        }
+    }
+    private IEnumerator LoadSceneC()
+    {
+        yield return SceneManager.LoadSceneAsync("BRP Sample Scene", LoadSceneMode.Additive);
     }
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: asset1
+  m_EditorClassIdentifier: 
+  m_GroupName: asset1
+  m_GUID: faa9d085b1b69b342999e46570c72d58
+  m_SerializeEntries:
+  - m_GUID: 7df94fa27d0d02747975233cae282285
+    m_Address: Assets/Prefabs/Blue_Sphere.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f7c539055f949dd439bfe2a2d317463c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4d85bc8d24b37ed48b579112008063fa, type: 2}
+    - {fileID: 11400000, guid: 708f1522f34bbdc419eb3c6204d02d5b, type: 2}
