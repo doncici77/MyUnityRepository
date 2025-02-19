@@ -45,11 +45,13 @@ public class Player : Character
         {
             SetMotionChange("isATTACK" , false);
             // 타겟 지점으로 이동
+            transform.LookAt(target);
             transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * 2.0f);
         }
         // 공격 범위 안에 들어온 경우
         else if(distance <= attak_range)
         {
+            transform.LookAt(target);
             //공격 자세로 넘어갑니다.
             SetMotionChange("isATTACK", true);
         }

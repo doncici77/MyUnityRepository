@@ -689,10 +689,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster_prefab: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
-  monster_count: 10
-  monster_spawn_time: 20
-  summon_rate: 10
-  re_rate: 5
+  monster_count: 5
+  monster_spawn_time: 10
+  summon_rate: 30
+  re_rate: 2
 --- !u!4 &1900945613
 Transform:
   m_ObjectHideFlags: 0
