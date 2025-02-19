@@ -13,6 +13,12 @@ public class Monster : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    // Action 테스트용 함수
+    public void MonsterSample()
+    {
+        Debug.Log("몬스터가 생성되었습니다.");
+    }
+
     void Update()
     {
         transform.LookAt(Vector3.zero);
