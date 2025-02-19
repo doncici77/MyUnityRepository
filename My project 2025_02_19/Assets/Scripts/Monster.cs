@@ -1,16 +1,15 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class Monster : MonoBehaviour
+public class Monster : Character
 {
-    Animator animator;
+    
     public float monster_speed;
     public float rate = 0.5f;
 
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
+        base.Start();
     }
 
     // Action 테스트용 함수
@@ -37,10 +36,5 @@ public class Monster : MonoBehaviour
             // 영점으로, 몬스터의 속도만큼 앞으로 이동합니다.
             SetMotionChange("isMOVE", true); // 에니메이터 설정
         }
-    }
-
-    private void SetMotionChange(string motion_name, bool param)
-    {
-        animator.SetBool(motion_name, param);
     }
 }

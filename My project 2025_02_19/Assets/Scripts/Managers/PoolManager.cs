@@ -8,7 +8,7 @@ using UnityEngine.Scripting;
 // 풀(웅덩이)
 // 오브젝트를 풀에 만들어두고, 필요할 때마다 풀 안에 있는 객체를 꺼내서 사용하는 방식.
 // 매번 실시간으로 파괴하고, 생성하는 갓보다 cpu의 부담을 줄일 수 있다.
-// 대신 미리 할당해두는 방식이기 때문에 메모리를 희생해서 성능을 높이는 방시입니다.
+// 대신 미리 할당해두는 방식이기 때문에 메모리를 희생해서 성능을 높이는 방식입니다.
 
 // 풀에 대한 작업 시 필요한 정보들을 보관하고 있는 인터페이스
 public interface IPool
@@ -37,11 +37,6 @@ public class ObjectPool : IPool
 {
     public Transform parent { get; set; }
     public Queue<GameObject> pool { get; set; } = new Queue<GameObject>();
-
-    public void ggg(int k, int gg = 5)
-    {
-        gg += 3;
-    }
 
     public GameObject GetGameObject(Action<GameObject> action = null)
     {
@@ -90,6 +85,12 @@ public class PoolManager : MonoBehaviour
             Add(path);
         }
 
+        // 큐에 없는 경우 큐 추가
+        if(pool_dict[path].pool.Count <= 0)
+        {
+            AddQ(path);
+        }
+
         return pool_dict[path];
         // 딕셔너리명[키] = 값;
     }
@@ -111,4 +112,10 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
+    public void AddQ(string path)
+    {
+        var go = Manager.instance.CreateFromPath(path);
+        go.transform.parent = pool_dict[path].parent;
+        pool_dict[path].ObjectReturn(go);
+    }
 }
