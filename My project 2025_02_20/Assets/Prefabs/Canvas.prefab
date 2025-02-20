@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 3277382721657038600}
   - component: {fileID: 1029635177372185726}
   - component: {fileID: 7122449873774631832}
+  - component: {fileID: 4213768264031735787}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -278,6 +279,24 @@ MonoBehaviour:
   panel: {fileID: 8501004379458997114}
   restartButton: {fileID: 6904195294135493723}
   nextButton: {fileID: 5908406067945115954}
+  time_bar: {fileID: 1499384202751984427}
+  timeText: {fileID: 4926933142276591023}
+--- !u!114 &4213768264031735787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593087128010364574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e537c419794b96c4d9f0e052ee1ceb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  is_countdown: 1
+  game_time: 60
+  is_timeover: 0
+  display_time: 0
 --- !u!1 &4695398615253079158
 GameObject:
   m_ObjectHideFlags: 0

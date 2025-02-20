@@ -12,8 +12,26 @@ public class GameManager : MonoBehaviour
 
     Image image;
 
+    // --Time Controller--
+    public GameObject time_bar;
+    public GameObject timeText;
+    TimeController timeController;
+
     void Start()
     {
+        // 타임 컨트롤러 연결 및 설정
+        timeController = GetComponent<TimeController>();
+
+        if(timeController != null )
+        {
+            if(timeController.game_time == 0.0f)
+            {
+                time_bar.SetActive(false); // 시간 제한이 없다면 숨김
+            }
+        }
+
+        // 내용 텍스트와 패널에 대한 설정
+
         // 1초 뒤에 해당함수를 호출 함니다.
         Invoke("InactiveImage", 1.0f);
         //패널 비활성화
@@ -39,6 +57,11 @@ public class GameManager : MonoBehaviour
             main_image.GetComponent<Image>().sprite = game_clear_sprite;
             // 플레이어 컨트롤러 상태를 end로 변경
             PlayerController.state = "end";
+
+            if(timeController != null)
+            {
+                timeController.is_timeover = true;
+            }
         }
         else if(PlayerController.state == "gameover")
         {
@@ -52,10 +75,36 @@ public class GameManager : MonoBehaviour
             main_image.GetComponent<Image>().sprite = game_over_sprite;
             // 플레이어 컨트롤러 상태를 end로 변경
             PlayerController.state = "end";
+
+            if (timeController != null)
+            {
+                timeController.is_timeover = true;
+            }
         }
         else if(PlayerController.state == "playing")
         {
             // 게임 진행 시에 대한 추가 처리를 구현하는 자리
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            PlayerController playerController = player.GetComponent<PlayerController>();
+
+            if(timeController != null)
+            {
+                if(timeController.game_time > 0.0f)
+                {
+                    // 표기상 정수로 보이게 설정(소수점을 버린다.)
+                    int time = (int)timeController.display_time;
+
+                    // 시간 갱신(UI)
+                    timeText.GetComponent<Text>().text = time.ToString();
+
+                    if(time == 0)
+                    {
+                        playerController.GameOver();
+                    }
+                }
+            }
         }
     }
 }

@@ -128,12 +128,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameOver();
+        }
+    }
+
     private void Jump()
     {
         goJump = true; // 플래그 키는 작업
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         animator.Play(Enum.GetName(typeof(ANIME_STATE), 2));
         state = "gameover";

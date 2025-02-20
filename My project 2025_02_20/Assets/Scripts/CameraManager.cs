@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     // 카메라의 스크롤 제한 값
-    public float left_limit = 0.0f;
-    public float right_limit = 0.0f;
+    public static float left_limit = 0.0f;
+    public static float right_limit = 27f;
     public float top_limit = 0.0f;
     public float bottom_limit = 0.0f;
 
