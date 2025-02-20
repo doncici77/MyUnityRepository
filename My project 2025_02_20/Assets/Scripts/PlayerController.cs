@@ -9,14 +9,14 @@ public class PlayerController : MonoBehaviour
     {
         PlayerIDLE,
         PlayerClear,
-        PlayerGameover,
+        PlayerGameOver,
         PlayerRun,
         PlayerJump
     }
 
     Animator animator;
-    string current; // 현제 진행 중인 애니메이션
-    string previous; // 기존의 진행 중인 애니메이션
+    string current = ""; // 현제 진행 중인 애니메이션
+    string previous = ""; // 기존의 진행 중인 애니메이션
 
     Rigidbody2D rbody;
     float axisH = 0.0f;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         state = "playing";
     }
 
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
             // 공중인 경우
             current = Enum.GetName(typeof(ANIME_STATE), 4);
         }
+        Debug.Log(current.ToString());
         
         // 현재의 모션이 이전의 모션과 다른 경우(애니메이션이 바뀐 경우)
         if(current != previous)
@@ -126,18 +128,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Jump()
+    {
+        goJump = true; // 플래그 키는 작업
+    }
+
     private void GameOver()
     {
         animator.Play(Enum.GetName(typeof(ANIME_STATE), 2));
+        state = "gameover";
+        GameStop();
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        // 현제 플레이어가 가지고 있는 콜라이더의 활성화를 비활성화로 설정합니다.(더이상의 충돌이 발생하지 않도록)
+        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+        // 위로 살짝 뛰어오르는 연출
     }
 
     private void Goal()
     {
         animator.Play(Enum.GetName(typeof(ANIME_STATE), 1));
+        state = "gameclear";
+        GameStop();
     }
 
-    private void Jump()
+    private void GameStop()
     {
-        goJump = true; // 플래그 키는 작업
+        // var rbody = GetComponent<Rigidbody2D>();
+        rbody.linearVelocity = new Vector2(0, 0); // 속력을 0으로 만들어서 움직이지 못하게
     }
 }
