@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 
     Vector3 dir; // 이동 방향
 
+    public GameObject explosionFactory; // 파티클 등록
+
     private void Start()
     {
         // 적의 방향 설정
@@ -37,9 +39,10 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject explosion = Instantiate(explosionFactory); // 파티클 생성
+        explosion.transform.position = transform.position; // 파티클 위치 변경
 
         Destroy(collision.gameObject); // 이 객체와 충돌한 오브젝트 파괴
         Destroy(gameObject);
-
     }
 }
