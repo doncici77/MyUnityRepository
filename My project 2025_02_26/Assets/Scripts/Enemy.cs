@@ -39,10 +39,22 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        ScoreManager.Instance.Score++;
+
         GameObject explosion = Instantiate(explosionFactory); // 파티클 생성
         explosion.transform.position = transform.position; // 파티클 위치 변경
 
-        Destroy(collision.gameObject); // 이 객체와 충돌한 오브젝트 파괴
-        Destroy(gameObject);
+        // 부딪힌 물체의 이름에 Bullet이 포함 된다면?
+        // 오브젝트 풀로 만들어질 이름은 Bullet(Clone)
+        if(collision.gameObject.name.Contains("Bullet"))
+        {
+            // 해당 충돌체를 비활성화 처리합니다.
+            collision.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
+        gameObject.SetActive(false);
     }
 }
