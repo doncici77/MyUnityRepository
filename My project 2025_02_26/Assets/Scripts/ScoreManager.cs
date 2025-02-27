@@ -16,10 +16,12 @@ public class ScoreManager : MonoBehaviour
     }
     #endregion
 
-    /*private void Start()
+    private void Start()
     {
-        bestScore = PlayerPrefs.GetInt
-    }*/
+        bestScore = PlayerPrefs.GetInt("BestScore", bestScore);
+        bestScoreUI.text = $"최고 점수: {bestScore}";
+        currentScoreUI.text = $"현재 점수: {currentScore}";
+    }
 
     // 매니저 내에 존재하는 필드 값
     // Inspector
