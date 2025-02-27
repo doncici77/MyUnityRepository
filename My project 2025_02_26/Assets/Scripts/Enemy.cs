@@ -55,6 +55,6 @@ public class Enemy : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // 적도 비활성화
     }
 }
